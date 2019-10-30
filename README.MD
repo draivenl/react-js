@@ -20,3 +20,9 @@ Create-react-app: es una aplicación moderna que se usa desde una línea de coma
     Una vez instalado se crea la carpeta del proyecto con
     create-react-app -nombre del proyecto-
 
+Para correr la aplicación
+    npm run start
+
+Otras herramientas:
+    Babel: Traduce Javascript moderno (JSX) a un Javascript que todos los navegadores puedan interpretar.
+    Eslint: Lee el código y avisa de errores.
