@@ -14,8 +14,8 @@ class Badge extends React.Component {
                     <h1>Lisandro <br/>G&oacute;mez Ortiz</h1>
                 </div>
                 <div className='Badge__section-info'>
-                    <p>FullStack Engineer</p>
-                    <p>@lgomezo</p>
+                    <h3>FullStack Engineer</h3>
+                    <div>@lgomezo</div>
                 </div>
                 <div className='Badge__footer'>
                     #PlatziConf
