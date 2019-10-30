@@ -1,14 +1,26 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-const name = 'Lisandro'
+const nombre = 'Lisandro'
+const profesion = 'Ingeniero de Sistemas'
 
-const elementJSX = <h1><i>Hola</i> {name}</h1>
+const elementJSX = 
+<div>
+    <h1>
+        <i>Hola</i> soy {nombre}
+    </h1>
+    <p>Soy {profesion}</p>
+</div>
+
 // Alternativa para agegar el elemento no con JSX sino con React
-
-const element = React.createElement('a', {href: 'http://platzi.com', target: '_blank'}, `Hola ${name}, clic para ir a Platzi`)
+const element = React.createElement(
+    'div', 
+    {},
+    React.createElement('h1', {}, React.createElement('i', {}, 'Hola'), ` soy ${nombre}`),
+    React.createElement('p', {}, `soy ${profesion}`)
+)
 
 const container = document.getElementById('app')
 
-ReactDom.render(element, container)
-// ReactDom.render(elementJSX, container)
+// ReactDom.render(element, container)
+ReactDom.render(elementJSX, container)
