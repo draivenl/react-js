@@ -1,8 +1,8 @@
-const element = document.createElement('div')
+import React from 'react'
+import ReactDom from 'react-dom'
 
-element.innerHTML = '<i>Hola</i>'
-element.innerHTML += '&nbsp;Mundo'
+const element = <h1><i>Hola</i> Mundo</h1>
 
 const container = document.getElementById('app')
 
-container.appendChild(element)
+ReactDom.render(element, container)
