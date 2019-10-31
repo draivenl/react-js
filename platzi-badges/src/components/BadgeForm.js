@@ -11,7 +11,15 @@ class BadgeForm extends React.Component{
     }
 
     handleClick = ev => console.log("Button Clicked")
-        
+    
+    // Los button por defecto son type="submit"
+    // Si se quiere evitar que haga submit por defecto, se agrega el evento onSubmit
+    // al formulario pero se detiene la accion con preventDefault().
+    // o simplemente se cambia el type por type="button"
+
+    handleSubmit = ev => {
+        ev.preventDefault()
+    }
     
 
     render(){
@@ -19,12 +27,12 @@ class BadgeForm extends React.Component{
             <div>
                 <h1>New Attendant</h1>
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>First Name</label>
                         <input onChange={this.handleChange} className="form-control" type="text" name="firstName" id="firstName"/>
-                        <button type="button" onClick={this.handleClick} className="btn btn-primary">Save</button>
                     </div>
+                    <button type="button" onClick={this.handleClick} className="btn btn-primary">Save</button>
                 </form>
             </div>
         )
