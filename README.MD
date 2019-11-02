@@ -26,3 +26,9 @@ Para correr la aplicación
 Otras herramientas:
     Babel: Traduce Javascript moderno (JSX) a un Javascript que todos los navegadores puedan interpretar.
     Eslint: Lee el código y avisa de errores.
+
+    Bootstrap
+        npm install bootstrap
+
+    React Router
+        npm install react-router-dom
