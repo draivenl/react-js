@@ -3,11 +3,13 @@ import ReactDom from 'react-dom'
 import "bootstrap/dist/css/bootstrap.css"
 import './global.css'
 
-import Badges from "./pages/Badges";
+import App from "./components/App"
+
+
 
 const container = document.getElementById('app')
 
 ReactDom.render(
-    <Badges />, 
+    <App />, 
     container
 )
