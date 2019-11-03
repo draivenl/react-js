@@ -43,7 +43,6 @@ class Badges extends React.Component{
     render(){
         return(
             <div>
-                <Navbar/>
                 <div className="Badges">
                     <div className="Badges__hero">
                         <div className="Badge__container">

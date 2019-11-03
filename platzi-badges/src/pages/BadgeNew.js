@@ -29,7 +29,6 @@ class BadgeNew extends React.Component{
     render(){
         return(
             <div>
-                <Navbar/>
                 <div className="BadgeNew__hero">
                     <img src={header} alt="logo"></img>
                 </div>
