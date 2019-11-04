@@ -1,53 +1,15 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import {Link} from "react-router-dom"
-import PageLoading from '../components/PageLoading'
-import PageError from '../components/PageError'
 import Badge from '../components/Badge'
-import api from '../api'
 
 import confLogo from '../images/platziconf-logo.svg'
 import './styles/BadgeDetails.css'
 
-class BadgeDetails extends Component {
-    state = {
-        loading: true,
-        error: null,
-        data: undefined
-    }
 
-    componentDidMount(){
-        this.fetchData()
-    }
-
-    fetchData = async () => {
-        this.setState({
-            loading: true,
-            error: null
-        })
-
-        try {
-            const data = await api.badges.read(
-                this.props.match.params.badgeId
-            )
-            this.setState({loading: false, data})
-        } catch (error) {
-            this.setState({loading: false, error})
-        }
-
-    }
-
-    render() {
-        if (this.state.loading) {
-            return <PageLoading/>
-        }
-        if (this.state.error) {
-            return <PageError error={this.state.error}/>
-        }
-        const badge = this.state.data
-
-        return (
-            <div>
+function BadgeDetails(props) {
+    const badge = props.badge
+    return (
+        <div>
                 <div className="BadgeDetails__hero">
                     <div className="container">
                         <div className="row">
@@ -85,8 +47,7 @@ class BadgeDetails extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+    );
 }
 
 export default BadgeDetails;
