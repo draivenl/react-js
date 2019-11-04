@@ -5,11 +5,11 @@ import BadgeForm from "../components/BadgeForm";
 import PageLoading from '../components/PageLoading'
 import api from '../api'
 
-import "./styles/BadgeNew.css";
+import "./styles/BadgeEdit.css";
 
-class BadgeNew extends React.Component{
+class BadgeEdit extends React.Component{
     state = {
-        loading: false,
+        loading: true,
         error: null,
         form:{
             firstName: '',
@@ -17,6 +17,31 @@ class BadgeNew extends React.Component{
             email: '',
             jobTitle: '',
             twitter: ''
+        }
+    }
+    componentDidMount(){
+        this.fetchData()
+    }
+
+    fetchData = async ev => {
+        this.setState({
+            loading: true,
+            error: null
+        })
+
+        try {
+            const data = await api.badges.read(
+                this.props.match.params.badgeId
+            )
+            this.setState({
+                loading: false,
+                form: data
+            })
+        } catch (error) {
+            this.setState({
+                loading: false,
+                error
+            })
         }
     }
 
@@ -38,7 +63,7 @@ class BadgeNew extends React.Component{
         })
 
         try {
-            api.badges.create(this.state.form)
+            api.badges.update(this.props.match.params.badgeId, this.state.form)
             this.setState({
                 loading: false
             })
@@ -61,8 +86,8 @@ if (this.state.loading) {
 
         return(
             <React.Fragment>
-                <div className="BadgeNew__hero">
-                    <img src={header} alt="logo" className="BadgeNew__hero-image"></img>
+                <div className="BadgeEdit__hero">
+                    <img src={header} alt="logo" className="BadgeEdit__hero-image"></img>
                 </div>
                 
                 <div className="container">
@@ -78,7 +103,7 @@ if (this.state.loading) {
                             />
                         </div>
                         <div className="col-6">
-                            <h1>New Attendant</h1>
+                            <h1>Edit Attendant</h1>
                             <BadgeForm 
                                 onChange={this.handleChange} 
                                 formValues={this.state.form}
@@ -94,4 +119,4 @@ if (this.state.loading) {
     }
 }
 
-export default BadgeNew
+export default BadgeEdit
