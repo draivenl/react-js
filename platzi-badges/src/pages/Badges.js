@@ -4,6 +4,7 @@ import confLogo from  "../images/badge-header.svg"
 import BadgesList from "../components/BadgesList";
 import {Link} from "react-router-dom"
 import PageLoading from "../components/PageLoading"
+import MiniLoader from "../components/MiniLoader"
 
 import api from '../api'
 import PageError from "../components/PageError";
@@ -15,8 +16,8 @@ class Badges extends React.Component{
 
         this.state = {
             loading: true,
-            error: undefined,
-            data: []
+            error: null,
+            data: undefined
         }
     }
     componentDidMount(){
@@ -63,8 +64,10 @@ class Badges extends React.Component{
         // }, 3000);
 
         this.fetchData()
-        
+        this.intervalId = setInterval(this.fetchData,5000);
     }
+
+    
 
     fetchData = async () => {
         this.setState({
@@ -102,12 +105,16 @@ class Badges extends React.Component{
         console.log('6. componentWillUnmount');
         // Limpia el setTimeout en caso de que no haya terminado cuando se va
         // a desmontar
-        clearTimeout(this.timeOutId)
+        // clearTimeout(this.timeOutId)
+        
+        // Limpia el setInterval en caso de que no haya terminado cuando se va
+        // a desmontar
+        clearInterval(this.intervalId)
         
     }
 
     render(){
-        if (this.state.loading) {
+        if (this.state.loading && !this.state.data) {
             return(<PageLoading/>)
         }
         if (this.state.error) {
@@ -135,6 +142,7 @@ class Badges extends React.Component{
                     <div className="Badges__list">
                         <div className="Badges__container">
                             <BadgesList badges={this.state.data}/>
+                            {this.state.loading && <MiniLoader/>}
                         </div>
                     </div>
                 </div>
