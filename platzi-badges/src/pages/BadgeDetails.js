@@ -6,7 +6,16 @@ import DeleteBadgeModal from '../components/DeleteBadgeModal'
 import confLogo from '../images/platziconf-logo.svg'
 import './styles/BadgeDetails.css'
 
+function useIncreaseCount(max){
+    const[count, setCount] = React.useState(0)
+    if (count > max) {
+        setCount(0)
+    }
+    return [count, setCount]
+}
+
 function BadgeDetails(props) {
+    const[count, setCount] = useIncreaseCount(4)
     const badge = props.badge
     return (
         <div>
@@ -36,14 +45,19 @@ function BadgeDetails(props) {
                         <div className="col">
                             <h2>Actions</h2>
                             <React.Fragment>
-                                <div>
+                                <React.Fragment>
+                                    <button onClick={() => {setCount(count + 1)}} className="btn btn-primary mr-4">
+                                        Increase Count: {count}
+                                    </button>
+                                </React.Fragment>
+                                <React.Fragment>
                                     <Link to={`/badges/${badge.id}/edit`} className="btn btn-primary mb-4">Edit</Link>
-                                </div>
-                                <div>
+                                </React.Fragment>
+                                <React.Fragment>
                                     <button onClick={props.onOpenModal} className="btn btn-danger">Delete</button>
                                     <DeleteBadgeModal modalIsOpen={props.modalIsOpen} onCloseModal={props.onCloseModal} onDeleteBadge={props.onDeleteBadge}/>
                                     
-                                </div>
+                                </React.Fragment>
                             </React.Fragment>
                         </div>
                     </div>
