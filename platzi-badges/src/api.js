@@ -26,7 +26,7 @@ async function callApi(endpoint, options = {}) {
 const api = {
   badges: {
     list() {
-      // return callApi('/badges');
+      return callApi('/badges');
 
       // Para simular cuando no retorna datos
       //return []
@@ -34,7 +34,7 @@ const api = {
       // Para simular que ocurre un error
       // throw new Error("Not found")
 
-      throw new Error('500: Server Error')
+      // throw new Error('500: Server Error')
 
     },
     create(badge) {
