@@ -3,8 +3,10 @@ import "./styles/Badges.css"
 import confLogo from  "../images/badge-header.svg"
 import BadgesList from "../components/BadgesList";
 import {Link} from "react-router-dom"
+import PageLoading from "../components/PageLoading"
 
 import api from '../api'
+import PageError from "../components/PageError";
 
 class Badges extends React.Component{
     constructor(props){
@@ -106,16 +108,12 @@ class Badges extends React.Component{
 
     render(){
         if (this.state.loading) {
-            return(<p>loading...</p>)
+            return(<PageLoading/>)
         }
         if (this.state.error) {
             // return( `Error: ${this.state.error}` )
             return( 
-                <React.Fragment>
-                    <h1>
-                        Error: {this.state.error.message}
-                    </h1>
-                </React.Fragment>
+                <PageError error={this.state.error}/>
              )
         }
 
