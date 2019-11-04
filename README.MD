@@ -32,3 +32,6 @@ Otras herramientas:
 
     React Router
         npm install react-router-dom
+
+    MD5
+	npm install md5
